@@ -62,6 +62,7 @@ body {
 	top:40%;
 	left:50%;
 	transform: translate(-50%,-50%);
+	text-align: center;
 } /* o punto de inserción dun elemento é a súa esquina superior esquerda, 
 transfrom corrixe a posición do bloque despazandoo a esquerda e arriba 
 segundo o 50% do seu tamaño, de xeito que quede centrado respecto ao seu 
@@ -70,6 +71,9 @@ antecedente - parent */
 .heading-primary{
 	color: #fff;
 	text-transform: uppercase;
+
+	backface-visibility: hidden; /* to correct some flickr on animation */
+	margin-bottom: 60px;
 }
 .heading-primary-main{
   display: block;
@@ -120,4 +124,67 @@ antecedente - parent */
 		opacity: 1;
 		transform: translateX(0);
 	}
+}
+
+/* animación para o botón */
+@keyframes moveInBottom{
+	0%{
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	100%{
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+/* estilos de botón. btn é o xenerico btn-color par ter varias cores de boton ;) */
+.btn:link,
+.btn:visited {
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 15px 40px;
+	display: inline-block;
+	border-radius: 100px;
+	transition: all -2s;
+	position: relative;
+}
+.btn:hover{
+	transform: translateY(-3px);
+	box-shadow: 0 10px 20px rgba(0,0,33,0.2);
+}
+.btn:active{
+	transform: translateY(-1px);
+	box-shadow: 0 5px 10px rgba(0,0,33,0.2); /*reducir o tamaño da sombra para reducir a 'altura'*/
+}
+.btn-white {
+	background-color: #fff;
+	color: #777;
+}
+
+/* pseudoelementos */
+
+.btn::after{
+	content: "";
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	border-radius: 100px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	transition: all .4s;
+}
+.btn-white::after{
+	background-color: #fff;
+}
+.btn:hover::after{
+	transform: scaleX(1.4) scaleY(1.6);
+	opacity: 0;
+}
+
+.btn-animated{
+  animation: moveInBottom .5s ease-out .75s; /*animation name duration function delay*/
+	animation-fill-mode: backwards;
 }
