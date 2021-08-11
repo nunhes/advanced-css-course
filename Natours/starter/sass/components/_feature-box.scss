@@ -8,10 +8,15 @@
 
 	&__icon {
 		font-size: 6rem;
-		margin-bottom: 25px;
+		margin-bottom: .5rem;
+		display: inline-block;
+		background-image: linear-gradient(to right, #55c57a, #28b485);
+		-webkit-background-clip: text;
+		color: transparent;
+		transition: transform .3s;
 	}
 
-	&__text {
-		font-size: 1.5rem;
+	&:hover {
+		transform: translateY(-1.5rem) scale(1.03);
 	}
 }
